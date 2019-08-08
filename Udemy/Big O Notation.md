@@ -145,3 +145,121 @@ function addUpTo(n) {
 
 => **But regardless of the exact number, the number of operations grows roughly proportionally with n.**
 
+<br>
+
+### Introducing....Big O
+
+Big O Notation is a way to formalize fuzzy counting. It allows us to talk in a very formal way about how the  runtime of an algorithm grows  as the inputs. We won't care about the details, only the trends.
+
+<br>
+
+### Big O Definition
+
+We say that an algorithm is **O(f(n))** if the number of simple operations the computer has to do is eventually less than a constant times **f(n)**, as **n** increases
+
+- f(n) could be linear (f(n) = n)
+- f(n) could be quadratic (f(n) = n^2)
+- f(n) could be constant (f(n) = 1)
+- f(n) could be something entirely different!
+
+One thing to notice is that when we talk about big oh we're talking about the worst case scenario. So we're talking about basically the upper bound for runtime.
+
+```javascript
+function addUpTo(n) {
+    return n * (n + 1) / 2;
+}
+```
+
+=> Always 3 Operations : **O(1)**
+
+```javascript
+function addUpTo(n) {
+    let total = 0;
+    for(let i = 1; i <= n; i++){
+        total += i;
+    }
+    return total;
+}
+```
+
+=> Number of operations  is (eventually) bounded by a multiple of n(say, 10n): **O(n)**
+
+```javascript
+function countUpAndDown(n){
+    console.log("Going Up!");
+    for (let i = 0; i < n; i++) {
+        console.log(i);
+    }
+    console.log("At the top!\nGoing down...");
+    for (let j = n - 1; j >= 0; j--) {
+        console.log(j);
+    }
+    console.log("Back Down. Bye!");
+}
+```
+
+=> Number of operations  is (eventually) bounded by a multiple of n(say, 10n): **O(n)** + **O(n)** = **O(n)**
+
+```javascript
+function printAllPairs(n) {
+    for(let i = 0; i < n; i++){
+        for(let j = 0; j < n; j++){
+            console.log(i, j);
+        }
+    }
+}
+```
+
+=> O(n) operation inside of an O(n) operation: **O(n*n) = O(n^2)**
+
+<br>
+
+### Simplifying Big O Expressions
+
+When determining the time complexity of an algorithm, there are some helpful **rule of thumbs** for Big O Expressions. These rules of thumb are consequences of the definition of Big O Notation.
+
+**Constants Don't Matter**
+
+- O(2n) ❌ => O(n) ✅
+- O(500) ❌ => O(1) ✅ 
+- O(13n^2) ❌ => O(n^2) ✅
+
+**Smaller Terms Don't Matter**
+
+- O(n + 10) ❌ => O(n) ✅
+- O(1000n + 100) ❌ => O(n) ✅
+- O(n^2 + 5n + 10) ❌ => O(n^2) ✅
+
+<br>
+
+### Big O Shorthands
+
+- Analyzing complexity with big O can get complicated
+- There are several rules of thumb that can help
+- These rules won't **ALWAYS** work, but are a helpful starting point
+
+1. Arithmetic operations are constant
+2. Variable assignment is constant
+3. Accessing elements in an array (by index) or object (by key) is constant
+4. In a loop, the complexity is the length of the loop times the complexity of whatever happens inside of the loop
+
+```javascript
+function logAtLeast5(n) {
+    for (let i = 1; i <= Math.max(5, n); i++) {
+        console.log(i);
+    }
+}
+```
+
+=> **O(n)**
+
+```javascript
+function logAtMost5(n) {
+    for (let i = 1; i <=Math.min(5, n); i++) {
+        console.log(i);
+    }
+}
+```
+
+=> **O(1)**
+
