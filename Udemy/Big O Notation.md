@@ -263,3 +263,69 @@ function logAtMost5(n) {
 
 => **O(1)**
 
+<br>
+
+### Space Complexity
+
+So far, we've been focusing on time complexity: how can we analyze the runtime of an algorithm as the size of the inputs increase?
+
+We can also use big O notation to analyze **space complexity**: how much additional memory  do we need to allocate in order to run the code in our algorithm?
+
+<br>
+
+### What about the inputs?
+
+Sometimes you'll hear the term **auxiliary space complexity** to refer to space required by the algorithm, not including space taken up by the inputs.
+
+Unless otherwise noted, when we talk about space complexity, technically we'll be talking about auxiliary space complexity.
+
+<br>
+
+### Rules of Thumb of Space Complexity in JS
+
+- Most primitives (booleans, numbers, undefined, null) are constant space
+- Strings require O(n) space (where n is the length of the String) 
+- Reference types are generally O(n), where n is the length(for arrays) or the number of keys (for objects)
+
+```javascript
+function sum(arr) {
+    let total = 0;
+    for(let i = 0; i < arr.length; i++) {
+        total += arr[i];
+    }
+    return total;
+}
+```
+
+=> **O(1) Space**
+
+```javascript
+function double(arr) {
+    let newArr=[];
+    for (let i = 0; i < arr.length; i++) {
+        newArr.push(2 * arr[i]);
+	}
+    return newArr;
+}
+```
+
+=> **O(n) Space**
+
+<br>
+
+### Logarithms
+
+We've encountered some of the most common complexities: O(1), O(n), O(n^2)
+
+Sometimes big O expressions involve more complex mathematical expressions
+
+One that appears more often than you might like is the logarithm!
+
+The logarithm of a number roughly measures the number of times you can divide that number by 2 **before you get a value that's less than or equal to one**.
+
+**O(logn) O(nlogn)**
+
+- Certain Searching algorithms have logarithmic time complexity. 
+- Efficient sorting algorithms involve logarithms.
+- Recursion sometimes involves logarithmic space complexity.
+
