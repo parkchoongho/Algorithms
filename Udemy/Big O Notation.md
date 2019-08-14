@@ -323,7 +323,9 @@ One that appears more often than you might like is the logarithm!
 
 The logarithm of a number roughly measures the number of times you can divide that number by 2 **before you get a value that's less than or equal to one**.
 
-**O(logn) O(nlogn)**
+**O(logn) **
+
+**O(nlogn)**
 
 - Certain Searching algorithms have logarithmic time complexity. 
 - Efficient sorting algorithms involve logarithms.
