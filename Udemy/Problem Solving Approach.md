@@ -49,3 +49,142 @@ Examples also provide sanity checks that your eventual solution works how it sho
 - Progress to More Complex Examples
 - Explore Examples with Empty Inputs
 - Explore Examples with Invalid Inputs
+
+<br>
+
+### Step3: Break It Down
+
+Explicitly write out the steps you need to take. This forces you to think about the code you'll write before you write it, and helps you catch any lingering conceptual issues or misunderstandings before you dive in and have to worry about details (e.g. language syntax) as well.
+
+ex> **Write a function which takes in a string and returns couts of each character in the string**
+
+```javascript
+function charCount(str){
+    // do something
+    // return an object with keys that are lowercase alphanumeric characters in the string; values should be the counts for those characters in the string
+}
+
+function charCount(str){
+    // make object to return at the end
+    // loop over string, for each character...
+    	// if the char is a number/letter AND is a key in object, add one to count
+    	// if the char is a number/letter AND not in object, add it to object and set value to 1
+    	// if the char is something else (space, period, etc.) don't do anything
+    // return object at the end
+}
+```
+
+<br>
+
+### Selve Or Simplify
+
+**Solve the problem**! And if you can't, **solve a simpler problem**.
+
+**Simplify**
+
+- Find the core difficulty in what you're trying to do
+- Temporarily ignore that difficulty 
+- Write a simplified solution
+- Then incorporate that difficulty back in
+
+ex> **Write a function which takes in a string and returns couts of each character in the string**
+
+```javascript
+function charCount(str){
+    // make object to return at the end
+    let result = {};
+    // loop over string, for each character...
+    for(let i = 0; i < str.length; i++){
+        let char = str[i].toLowerCase();
+        // if the char is a number/letter AND is a key in object, add one to count
+        if(result[char] > 0){
+			result[char]++;
+        }
+        // if the char is a number/letter AND not in object, add it to object and set value to 1
+        else{
+            result[char] = 1;
+        }
+    }
+    	// if the char is something else (space, period, etc.) don't do anything
+    // return object at the end
+    return result
+}
+```
+
+<br>
+
+### Look Back & Refactor
+
+It is really important to look back your code after the work done! There are some refactoring questions you need to ask yourself.
+
+**Refactoring Questions**
+
+- Can you check the results?
+- Can you derive the result differently?
+- Can you understand it at a glance?
+- Can you use the result or method for some other problem?
+- Can you improve the performance of your solution?
+- Can you think of other ways to refactor?
+- How have other people solved this problem?
+
+ex> **Write a function which takes in a string and returns couts of each character in the string**
+
+```javascript
+function charCount(str){
+    let obj = {};
+    for(let i = 0; i < str.length; i++){
+        let char = str[i].toLowerCase();
+        if(/[a-z0-9]/.test(char)){
+            if(obj[char] > 0){
+                obj[char]++;
+            }else{
+                obj[char] = 1;
+            }
+        }
+    }
+    return obj;
+}
+```
+
+Refactoring the above code.
+
+```javascript
+function charCount(str){
+    let obj = {};
+    for(let char of str){
+        char = char.toLowerCase();
+        if(/[a-z0-9]/.test(char)){
+        	obj[char] = ++obj[char] || 1
+        }
+    }
+    return obj;
+}
+```
+
+Refactoring the above code. (For the situation you don't know the regular expressions)
+
+```javascript
+function isAlphaNumber(char){
+    let code = char.charCodeAt(0);
+    if((code > 47 && code < 58) ||
+       (code > 64 && code < 91) ||
+       (code > 96 && code < 123)){
+      return true;
+    }
+    return false;
+}
+
+
+function charCount(str){
+    let obj = {};
+    for(let char of str){
+        if(isAlphaNumber(char)){
+            // after checking whether the character is alphanumeric, and then lower the character
+            char = char.toLowerCase();
+        	obj[char] = ++obj[char] || 1
+        }
+    }
+    return obj;
+}
+```
+
