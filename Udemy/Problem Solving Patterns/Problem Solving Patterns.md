@@ -65,3 +65,6 @@ console.log(checkArr([1, 2, 3], [4, 1, 9]));
 
 The idea behind the frequency counter usually use an object and you use that object to construct a profile sort of a way of breaking down the contents of an array or a string.
 
+**Anagrams Problem**
+
+Given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase, or name formed by rearranging the letters of another, such as ***cinema***, formed from ***iceman***.
