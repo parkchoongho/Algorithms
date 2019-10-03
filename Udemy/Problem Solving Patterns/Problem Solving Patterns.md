@@ -69,3 +69,30 @@ The idea behind the frequency counter usually use an object and you use that obj
 
 Given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase, or name formed by rearranging the letters of another, such as ***cinema***, formed from ***iceman***.
 
+**Solution**
+
+```javascript
+function isAnagram(str1, str2) {
+  if (str1 === "" && str2 === "") return true;
+  if (str1.length !== str2.length) return false;
+
+  let strObj1 = {};
+  let strObj2 = {};
+
+  for (let ele of str1) {
+    strObj1[ele] = (strObj1[ele] || 0) + 1;
+  }
+  for (let ele of str2) {
+    strObj2[ele] = (strObj2[ele] || 0) + 1;
+  }
+
+  for (let key in strObj1) {
+    if (!(key in strObj2)) return false;
+    if (strObj1[key] !== strObj2[key]) return false;
+  }
+  return true;
+}
+
+console.log(isAnagram("bbbggnjk", "jkggbbnb"));
+```
+
