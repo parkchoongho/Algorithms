@@ -76,7 +76,7 @@ function charCount(str){
 
 <br>
 
-### Selve Or Simplify
+### Solve Or Simplify
 
 **Solve the problem**! And if you can't, **solve a simpler problem**.
 
