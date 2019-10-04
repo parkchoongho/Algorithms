@@ -96,3 +96,60 @@ function isAnagram(str1, str2) {
 console.log(isAnagram("bbbggnjk", "jkggbbnb"));
 ```
 
+<br>
+
+### Multiple Pointers
+
+Creating **pointers** or values that correspond to an index or position and move towards the beginning, end or middle based on a certain condition
+
+**Very** efficient for solving problems with minimal space complexity as well
+
+**Example**
+
+Write a function called **sumZero** which accepts a **sorted** array of integers. The function should find the **first** pair where the sum is 0. Return an array that includes both values that sum to zero or undefined if a pair does not exist.
+
+**Naive Solution**
+
+```javascript
+function zeroToSum(arr) {
+  for (let index = 0; index < arr.length; index++) {
+    for (let j = index + 1; j < arr.length; j++) {
+      if (arr[index] + arr[j] === 0) {
+        return [arr[index], arr[j]];
+      }
+    }
+  }
+  return undefined;
+}
+
+console.log(zeroToSum([-3, -2 - 1, 0, 4, 5, 6]));
+```
+
+**Time Complexity**: O(n^2)
+
+**Space Complexity**: O(1)
+
+**Multiple Pointers Solution**
+
+```javascript
+function zeroToSum(arr) {
+  let left = 0;
+  let right = arr.length - 1;
+  while (left < right) {
+    let sum = arr[left] + arr[right];
+    if (sum === 0) return [arr[left], arr[right]];
+    else if (sum > 0) right--;
+    else left++;
+  }
+  return undefined;
+}
+
+console.log(zeroToSum([-3, -2, -1, 0, 2, 4, 5]));
+```
+
+**Time Complexity**: O(n)
+
+**Space Complexity**: O(1)
+
+This idea is using two pointers in this case working from the far left side and the far right side towards the middle. 
+
