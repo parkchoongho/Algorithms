@@ -153,3 +153,28 @@ console.log(zeroToSum([-3, -2, -1, 0, 2, 4, 5]));
 
 This idea is using two pointers in this case working from the far left side and the far right side towards the middle. 
 
+**Count Unique Value Problem**
+
+Implement a function called **countUniqueValues**, which accepts a sorted array, and counts the unique values in the array. There can be negative numbers in the array, but it will always be sorted.
+
+**Solution**
+
+```javascript
+function countUniqueValues(arr) {
+  let compareIndex = 0;
+  let movingIndex = 0;
+  if (arr.length === 0) return 0;
+  let count = 1;
+  while (movingIndex <= arr.length - 1) {
+    if (arr[movingIndex] === arr[compareIndex]) movingIndex++;
+    else {
+      compareIndex = movingIndex;
+      count++;
+    }
+  }
+  return count;
+}
+
+console.log(countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13]));
+```
+
