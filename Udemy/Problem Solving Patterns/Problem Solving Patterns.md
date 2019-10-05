@@ -178,3 +178,61 @@ function countUniqueValues(arr) {
 console.log(countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13]));
 ```
 
+<br>
+
+### Sliding Window
+
+This pattern involves creating a **window** which can either be an array or number from one position to another. 
+
+Depending on a certain condition, the window either increases or closes (and a new window is created) 
+
+Very useful for keeping track of a subset of data in an array/string etc.
+
+**Example**
+
+Write a function called maxSubArraySum which accepts an array of integers and a number called **n**. The function should calculate the maximum sum of **n** consecutive elements in the array.
+
+**Naive Solution**
+
+```javascript
+function findMaxSum(arr, num) {
+  if (arr.length < num) return null;
+
+  let max = -Infinity;
+  for (let i = 0; i < arr.length - num + 1; i++) {
+    let tempSum = 0;
+    for (let j = 0; j < num; j++) {
+      tempSum += arr[i + j];
+    }
+    if (tempSum > max) max = tempSum;
+  }
+  return max;
+}
+
+console.log(findMaxSum([5, 6, 3, 4, 7, 8, 5, 6, 5, 7, 5, 5, 9, 3, 1, 9], 3));
+```
+
+**Sliding Window Solution**
+
+```javascript
+function findMax(arr, num) {
+  if (arr.length < num) return null;
+
+  let maxSum = 0;
+  let tempSum = 0;
+
+  for (let i = 0; i < num; i++) {
+    tempSum += arr[i];
+    maxSum = tempSum;
+  }
+
+  for (let i = num; i < arr.length; i++) {
+    tempSum = tempSum - arr[i - num] + arr[i];
+    maxSum = Math.max(tempSum, maxSum);
+  }
+  return maxSum;
+}
+
+console.log(findMax([5, 6, 3, 4, 7, 8, 5, 6, 5, 7, 5, 5, 9, 3, 1, 9], 3));
+```
+
