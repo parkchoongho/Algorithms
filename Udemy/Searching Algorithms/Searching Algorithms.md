@@ -47,3 +47,20 @@ But how does these functions work?
   - If the value is too large, move right pointer down
 - If you never find the value, return -1
 
+### Binary Search Big O
+
+=> **O(logn)**
+
+### Naive String Search
+
+- Suppose you want to count the number of times a smaller string appears in a longer string
+- A straightforward approach involves checking pairs of characters individually
+
+### Naive String Search Pseudocode
+
+- Loop over the longer string
+- Loop over the shorter string
+- If the characters don't match, break out of the inner loop
+- If the characters do match, keep going
+- If you complete the inner loop and find a match, increment the count of matches
+- Return the count
