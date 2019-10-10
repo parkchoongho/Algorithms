@@ -33,5 +33,85 @@ Sorting is the process of rearranging the items in a collection (e.g. an array) 
   - If it returns a positive number, a should come after b
   - If it returns 0, a and b are the same as far as the sort is concerned
 
-  
+
+```javascript
+function compareByLen(str1, str2){
+    return str1.length - str2.length
+}
+
+["Steele", "Colt", "Data Structures", "Algorithms"].sort(compareByLen);
+```
+
+=> ["Colt", "Steele", "Algorithms", "Data Structures"]
+
+### Bubble Sort
+
+A sorting algorithm where the largest values bubble up to the top!
+
+**Before we sort, we must swap!**
+
+Many sorting algorithms involve some type of swapping functionality (e.g. swapping to numbers to put them in order)
+
+```javascript
+// ES5
+function swap(arr, idx1, idx2){
+    var temp = arr[idx1];
+    arr[idx1] = arr[idx2];
+    arr[idx2] = temp;
+}
+
+// ES2015
+const swap = (arr, idx1, idx2) => {
+    [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+}
+```
+
+### Bubble Sort Pseudocode
+
+- Start looping from with a variable called i the end of the array towards the beginning
+- Start an inner loop with a variable called j from the beginning until i - 1
+- If arr[j] is greater than arr[j+1], swap those two values
+- Return the sorted array
+
+bubbleSort.js
+
+```javascript
+function bubbleSort(arr) {
+  for (i = arr.length; i > 0; i--) {
+    for (j = 0; j < i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+  return arr;
+}
+
+console.log(bubbleSort([10, 9, 3, 2, 1]));
+```
+
+bubbleSort.js Optimization
+
+```javascript
+function bubbleSort(arr) {
+  for (i = arr.length; i > 0; i--) {
+    let noSwap = true;
+    for (j = 0; j < i - 1; j++) {
+      console.log(arr, arr[j], arr[j + 1]);
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+        noSwap = false;
+      }
+    }
+    if (noSwap) break;
+  }
+  return arr;
+}
+
+console.log(bubbleSort([1, 2, 3, 9, 10]));
+```
 
