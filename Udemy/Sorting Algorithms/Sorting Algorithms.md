@@ -148,3 +148,36 @@ function selectionSort(arr) {
 console.log(selectionSort([10, 6, 7, 8, 4, 3, 1, 1]));
 ```
 
+### Insertion Sort
+
+Builds up the sort by gradually creating a larger left half which is always sorted
+
+### Insertion Sort Pseudocode
+
+- Start by picking the second element in the array
+- Now compare the second element with the one before it and swap if necessary
+- Continue to the next element and if it is in the incorrect order, iterate through the sorted portion (i.e. the left side) to place the element in the correct place
+- Repeat until the array is sorted
+
+insertionSort.js
+
+```javascript
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let inSertedIndex = i;
+    for (let j = i - 1; j >= 0; j--) {
+      if (arr[inSertedIndex] < arr[j]) {
+        let temp = arr[inSertedIndex];
+        arr[inSertedIndex] = arr[j];
+        arr[j] = temp;
+        inSertedIndex -= 1;
+      } else break;
+    }
+    console.log(arr);
+  }
+  return arr;
+}
+
+console.log(insertionSort([9, 4, 6, 2, 7]));
+```
+
