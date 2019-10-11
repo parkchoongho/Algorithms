@@ -181,3 +181,17 @@ function insertionSort(arr) {
 console.log(insertionSort([9, 4, 6, 2, 7]));
 ```
 
+### Big O of Sorting Algorithms
+
+|   Algorithms   | Time Complexity (Best) | Time Complexity (Average) | Time Complexity (Worst) | Space Complexity |
+| :------------: | :--------------------: | :-----------------------: | :---------------------: | :--------------: |
+|  Bubble Sort   |          O(n)          |          O(n^2)           |         O(n^2)          |       O(1)       |
+| Insertion Sort |          O(n)          |          O(n^2)           |         O(n^2)          |       O(1)       |
+| Selection Sort |         O(n^2)         |          O(n^2)           |         O(n^2)          |       O(1)       |
+
+### Recap
+
+- Sorting is *fundamental* !
+- Bubble Sort, Selection Sort, and Insertion Sort are all roughly equivalent
+- All have average time complexities that are quadratic
+- We can do better..... but we need more complex algorithms! 
