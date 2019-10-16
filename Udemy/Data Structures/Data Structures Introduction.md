@@ -24,3 +24,20 @@ Need to write a scheduler? **Binary Heap**
 
 #### There is a tone of contents to take in here.... Don't get overwhelmed trying to master it all at once.
 
+### ES2015 Class Syntax
+
+#### Objectives
+
+- Explain what a class is
+- Understand how JavaScript implements the **idea** of classes
+- Define terms like abstraction, encapsulation and polymorphism
+- Use ES2015 classes to implement data structures
+
+#### What is a Class?
+
+A blueprint for creating objects with pre-defined properties and methods
+
+#### Why do we need to learn class?
+
+We're going to implement **data structures** as **classes!**
+
