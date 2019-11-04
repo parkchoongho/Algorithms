@@ -80,13 +80,32 @@ class SinglyLinkedList {
     }
     return false;
   }
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) {
+      this.unshift(val);
+      return true;
+    }
+    if (index === this.length) {
+      this.push(val);
+      return true;
+    }
+    let newNode = new Node(val);
+    let foundNode = this.get(index - 1);
+
+    newNode.next = foundNode.next;
+    foundNode.next = newNode;
+
+    this.length++;
+    return true;
+  }
 }
 
 let list = new SinglyLinkedList();
-list.unshift("HELLO");
-console.log(list);
-list.unshift("HI");
-console.log(list);
-list.unshift("What's Up");
-console.log(list.set(0, "Well~"));
+list.push("HELLO");
+// console.log(list);
+list.push("HI");
+// console.log(list);
+console.log(list.insert(1, "What's Up"));
+
 console.log(list);
