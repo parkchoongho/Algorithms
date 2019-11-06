@@ -123,6 +123,7 @@ class SinglyLinkedList {
       current = next;
     }
     current.next = prev;
+    return this;
   }
   print() {
     let arr = [];
