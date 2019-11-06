@@ -109,6 +109,30 @@ class SinglyLinkedList {
     this.length--;
     return removingNode;
   }
+  reverse() {
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
+
+    let prev = null;
+    let next;
+    while (current.next) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+    current.next = prev;
+  }
+  print() {
+    let arr = [];
+    let current = this.head;
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+    console.log(arr);
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -117,7 +141,7 @@ list.push("HELLO");
 list.push("HI");
 // console.log(list);
 list.push("Holly Shit!!");
-
-list.remove(1);
-
-console.log(list);
+list.push("Joke");
+list.push("Pop");
+list.reverse();
+list.print();
