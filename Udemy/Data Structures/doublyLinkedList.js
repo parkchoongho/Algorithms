@@ -53,24 +53,27 @@ class DoublyLinkedList {
     this.length--;
     return poppedNode;
   }
+  unshift(val) {
+    let newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 let newDoubly = new DoublyLinkedList();
-newDoubly.push(3);
-newDoubly.push(4);
-newDoubly.push(5);
-
+newDoubly.unshift(3);
 console.log(newDoubly);
 console.log("==============");
-console.log(newDoubly.shift());
-
+newDoubly.unshift(4);
 console.log(newDoubly);
 console.log("==============");
-console.log(newDoubly.shift());
-
+newDoubly.unshift(5);
 console.log(newDoubly);
 console.log("==============");
-console.log(newDoubly.shift());
-
-console.log(newDoubly);
-console.log("==============");
-console.log(newDoubly.shift());
