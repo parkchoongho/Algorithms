@@ -242,3 +242,104 @@ console.log("==============");
 console.log(newDoubly.shift());
 ```
 
+### Unshifting
+
+Adding a node to the **begginning** of the Doubly Linked List
+
+### Unshifting pseudocode
+
+- Create a new node with the value passed to the function
+- If the length is 0
+  - Set the head to be the new node
+  - Set the tail to be the new node
+- Otherwise
+  - Set the prev property on the head of the list to be the new node
+  - Set the next property on the new node to be the head property
+  - Update the head to be the new node
+- Increment the length
+- Return the list
+
+### Unshifting Code
+
+```javascript
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+    this.prev = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  push(val) {
+    let newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  pop() {
+    if (!this.head) return undefined;
+    let poppedNode = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = poppedNode.prev;
+      this.tail.next = null;
+      poppedNode.prev = null;
+    }
+    this.length--;
+    return poppedNode;
+  }
+  shift() {
+    if (!this.head) return undefined;
+    let poppedNode = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = poppedNode.next;
+      this.head.prev = null;
+      poppedNode.next = null;
+    }
+    this.length--;
+    return poppedNode;
+  }
+  unshift(val) {
+    let newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+}
+let newDoubly = new DoublyLinkedList();
+newDoubly.unshift(3);
+console.log(newDoubly);
+console.log("==============");
+newDoubly.unshift(4);
+console.log(newDoubly);
+console.log("==============");
+newDoubly.unshift(5);
+console.log(newDoubly);
+console.log("==============");
+```
+
