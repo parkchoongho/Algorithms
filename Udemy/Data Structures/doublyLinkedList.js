@@ -66,14 +66,35 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    let countIndex, currentNode;
+    if (index <= this.length / 2) {
+      console.log("WORKING FROM START");
+      countIndex = 0;
+      currentNode = this.head;
+      while (index !== countIndex) {
+        countIndex++;
+        currentNode = currentNode.next;
+      }
+    } else {
+      console.log("WORKING FROM END");
+      countIndex = this.length - 1;
+      currentNode = this.tail;
+      while (index !== countIndex) {
+        countIndex--;
+        currentNode = currentNode.prev;
+      }
+    }
+    return currentNode;
+  }
 }
 let newDoubly = new DoublyLinkedList();
 newDoubly.unshift(3);
-console.log(newDoubly);
-console.log("==============");
+
 newDoubly.unshift(4);
-console.log(newDoubly);
-console.log("==============");
+
 newDoubly.unshift(5);
 console.log(newDoubly);
 console.log("==============");
+console.log(newDoubly.get(2));
