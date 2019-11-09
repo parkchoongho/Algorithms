@@ -88,6 +88,14 @@ class DoublyLinkedList {
     }
     return currentNode;
   }
+  set(index, val) {
+    let validNode = this.get(index);
+    if (validNode) {
+      validNode.val = val;
+      return true;
+    }
+    return false;
+  }
 }
 let newDoubly = new DoublyLinkedList();
 newDoubly.unshift(3);
@@ -97,4 +105,6 @@ newDoubly.unshift(4);
 newDoubly.unshift(5);
 console.log(newDoubly);
 console.log("==============");
-console.log(newDoubly.get(2));
+console.log(newDoubly.set(2, 6));
+console.log("==============");
+console.log(newDoubly);
