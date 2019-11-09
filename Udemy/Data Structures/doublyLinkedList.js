@@ -25,9 +25,38 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  pop() {
+    if (!this.head) return undefined;
+    let poppedNode = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = poppedNode.prev;
+      this.tail.next = null;
+      poppedNode.prev = null;
+    }
+    this.length--;
+    return poppedNode;
+  }
 }
 let newDoubly = new DoublyLinkedList();
 newDoubly.push(3);
-console.log(newDoubly);
 newDoubly.push(4);
+newDoubly.push(5);
+
 console.log(newDoubly);
+console.log("==============");
+console.log(newDoubly.pop());
+
+console.log(newDoubly);
+console.log("==============");
+console.log(newDoubly.pop());
+
+console.log(newDoubly);
+console.log("==============");
+console.log(newDoubly.pop());
+
+console.log(newDoubly);
+console.log("==============");
+console.log(newDoubly.pop());
