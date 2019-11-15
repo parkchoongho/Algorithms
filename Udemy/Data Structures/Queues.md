@@ -115,3 +115,18 @@ console.log(linkedQueue);
 - Decrement the size by 1
 - Return the value of the node dequeued
 
+### Big O of Queues
+
+Insertion - **O(1)**
+
+Removal - **O(1)**
+
+Searching - **O(n)**
+
+Access - **O(n)**
+
+### Recap
+
+- Queues are a **FIFO** data structure, all elements are first in first out.
+- Queues are useful for processing tasks and are foundational for more complex data structures
+- Insertion and Removal can be done in **O(1)**
