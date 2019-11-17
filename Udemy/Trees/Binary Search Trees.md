@@ -41,3 +41,15 @@ And a **Tree** should has **one root!!**
 - Folders in Operating Systems
 - Computer File Systems
 
+### Kinds of Trees
+
+- Trees
+- Binary Trees
+- Binary Search Trees
+
+### How Binary Search Trees  Work
+
+- Every parent node has at most **two** children
+- Every node to the left of a parent node is **always less** than parent
+- Every node to the right of a parent node is **always greater** than the parent
+
