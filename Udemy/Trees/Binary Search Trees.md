@@ -53,7 +53,7 @@ And a **Tree** should has **one root!!**
 - Every node to the left of a parent node is **always less** than parent
 - Every node to the right of a parent node is **always greater** than the parent
 
-### Inserting a node
+### Inserting a Node
 
 **Steps - Iteratively or Recursively**
 
@@ -119,5 +119,90 @@ tree.insert(9);
 // tree.insert(11);
 
 console.dir(tree);
+```
+
+### Finding a Node
+
+**Steps - Iteratively or Recursively**
+
+- Starting at the root
+  - Check if there is a root, if not - we're done searching!
+  - If there is a root, check if the value of the new node is the value is the value we are looking for. 
+    If we found it, we're done!
+  - If not, check to see if the value is greater than or less than the value of the root
+  - If it is greater
+    - Check to see if there is a node to the right
+      - If there is, move to that node and repeat these steps
+      - If there is not, we're done searching!
+  - It is is less
+    - Check to see if there is a node to the left
+      - If there is, move to that node and repeat these steps
+      - If there is not, we're done searching!
+
+### Finding Code
+
+```javascript
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+  }
+  insert(val) {
+    let newNode = new Node(val);
+    if (!this.root) {
+      this.root = newNode;
+      return this;
+    }
+    let currentNode = this.root;
+    while (currentNode) {
+      if (currentNode.val === val) return undefined;
+      if (currentNode.val < val) {
+        if (!currentNode.right) {
+          currentNode.right = newNode;
+          break;
+        }
+        currentNode = currentNode.right;
+      } else {
+        if (!currentNode.left) {
+          currentNode.left = newNode;
+          break;
+        }
+        currentNode = currentNode.left;
+      }
+    }
+  }
+  find(val) {
+    if (!this.root) return false;
+
+    let current = this.root;
+
+    while (true) {
+      if (current.val === val) return current;
+      else if (current.val < val) {
+        if (!current.right) return false;
+        current = current.right;
+      } else {
+        if (!current.left) return false;
+        current = current.left;
+      }
+    }
+  }
+}
+
+let tree = new BinarySearchTree();
+tree.insert(10);
+tree.insert(12);
+tree.insert(9);
+tree.insert(17);
+tree.insert(7);
+
+console.dir(tree.find(9));
 ```
 
