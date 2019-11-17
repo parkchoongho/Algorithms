@@ -206,3 +206,15 @@ tree.insert(7);
 console.dir(tree.find(9));
 ```
 
+### Big O of Binary Search Tree
+
+Insertion - **O(logn)**
+
+Searching - **O(logn)**
+
+**Double the number of nodes...**   
+
+=>   **You only increase the number of steps to insert/find by 1**
+
+(**It's not always guaranteed!!!!!!!**)
+
