@@ -34,13 +34,29 @@ class BinarySearchTree {
       }
     }
   }
+  find(val) {
+    if (!this.root) return false;
+
+    let current = this.root;
+
+    while (true) {
+      if (current.val === val) return current;
+      else if (current.val < val) {
+        if (!current.right) return false;
+        current = current.right;
+      } else {
+        if (!current.left) return false;
+        current = current.left;
+      }
+    }
+  }
 }
 
 let tree = new BinarySearchTree();
 tree.insert(10);
 tree.insert(12);
 tree.insert(9);
-// tree.insert(11);
-// tree.insert(11);
+tree.insert(17);
+tree.insert(7);
 
-console.dir(tree);
+console.dir(tree.find(9));
