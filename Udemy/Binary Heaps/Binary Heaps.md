@@ -24,3 +24,19 @@ Binary Heaps are used to implement Priority Queues, which are **very** commonly 
 
 They are also used quite a bit, with **graph traversal** algorithms
 
+### Storing Heaps
+
+There's an easy way of storing a binary heap...  **A List / Array**
+
+- **Array**
+
+For any index of an array **n**...
+
+The left child is stored at **2n + 1**
+
+The right child is at **2n + 2**
+
+**What if we have a child node and want to find its parent?**
+
+For any child node at index **n**... Its parent is at index **(n - 1)/2 floored**
+
