@@ -64,3 +64,11 @@ In order to look up values by key, we need a way to **convert keys into valid ar
 
 A function that performs this task is called a ***hash function***
 
+### Hash Function
+
+#### What makes a good hash? (not a cryptographically secure one)
+
+1. Fast (i.e. constant time)
+2. Doesn't cluster outputs at specific indices, but distributes uniformly
+3. Deterministic (same input yields same output)
+
