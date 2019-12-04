@@ -72,3 +72,22 @@ A function that performs this task is called a ***hash function***
 2. Doesn't cluster outputs at specific indices, but distributes uniformly
 3. Deterministic (same input yields same output)
 
+#### Basic Hash Function
+
+```javascript
+function hash(key, arrayLen) {
+  let total = 0;
+  for (let char of key) {
+    let value = char.charCodeAt(0) - 96;
+    total = (total + value) % arrayLen;
+  }
+  return total;
+}
+```
+
+#### Refining our Hash (Problems with our current hash)
+
+1. Only hashes strings (we won't worry about this)
+2. Not constant time - linear in key length
+3. Could be a little more random
+
