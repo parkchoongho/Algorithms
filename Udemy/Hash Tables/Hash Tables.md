@@ -48,3 +48,19 @@ orangered --------------> #ff4500
 
 cyan ----------------------> #00ffff 
 
+#### The problem is.....
+
+How can we get human-readability and computer-readability?
+
+Computer don't know how to find an element at index pink!
+
+#### But Hash Tables to the rescue!!
+
+### The Hash Part
+
+To implement a hash table, we'll be using an array. 
+
+In order to look up values by key, we need a way to **convert keys into valid array indices**.
+
+A function that performs this task is called a ***hash function***
+
