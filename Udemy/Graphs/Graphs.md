@@ -43,5 +43,27 @@ A **graph data structure** consists of a finite (and possibly mutable) set of ve
 | **E** | 0     | 0     | 0     | **1** | 0     | **1** |
 | **F** | **1** | 0     | 0     | 0     | **1** | 0     |
 
+### Storing Graphs: Adjacency List
 
+```javascript
+    [
+ 0   [1, 5],
+ 1   [0, 2],
+ 2   [1, 3],
+ 3   [2, 4],
+ 4   [3, 5],
+ 5   [4, 0]
+    ]
+```
+
+```javascript
+{
+    A: ["B", "F"],
+    B: ["A", "C"],
+    C: ["B", "D"],
+    D: ["C", "E"],
+    E: ["D", "F"],
+    F: ["E", "A"]
+}
+```
 
