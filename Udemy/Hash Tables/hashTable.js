@@ -10,7 +10,7 @@ function hash(key, arrayLen) {
 }
 
 class HashTable {
-  constructor(size = 53) {
+  constructor(size = 4) {
     this.keyMap = new Array(size);
   }
   _hash(key) {
@@ -23,4 +23,23 @@ class HashTable {
     }
     return total;
   }
+  set(key, value) {
+    let index = this._hash(key);
+    if (!this.keyMap[index]) {
+      this.keyMap[index] = [];
+    }
+    this.keyMap[index].push([key, value]);
+  }
 }
+
+let ht = new HashTable();
+ht.set("hello world", "goodbye!!");
+ht.set("dogs", "are cool");
+ht.set("cats", "are adorable");
+ht.set("i love", "pizza");
+
+console.log(ht.keyMap);
+
+ht.set("hi", "bye");
+
+console.log(ht.keyMap);
