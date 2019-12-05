@@ -67,3 +67,52 @@ A **graph data structure** consists of a finite (and possibly mutable) set of ve
 }
 ```
 
+### Adjacency Matrix vs List Big O
+
+| OPERATION     | ADJACENCY MATRIX | ADJACENCY LIST |
+| ------------- | ---------------- | -------------- |
+| Add Vertex    | O(\|V^2\|)       | O(1)           |
+| Add Edge      | O(1)             | O(1)           |
+| Remove Vertex | O(\|V^2\|)       | O(\|V\|+\|E\|) |
+| Remove Edge   | O(1)             | O(\|E\|)       |
+| Query         | O(1)             | O(\|V\|+\|E\|) |
+| Storage       | O(\|V^2\|)       | O(\|V\|+\|E\|) |
+
+=> **|V|** - number of vertices, **|E|** - number of edges
+
+#### Adjacency Matrix
+
+- Takes up more space (in sparse graphs)
+- Slower to iterate over all edges
+- Faster to lookup specific edge
+
+#### Adjacency List
+
+- Can take up less space (in sparse graphs)
+- Faster to iterate over all edges
+- Can be slower to lookup specific edge
+
+#### We use Adjacency List!!
+
+### Add Vertex
+
+- Write a method called addVertex, which accepts a name of a vertex
+- It should add a key to the adjacency list with the name of the vertex and set its value to be an empty array
+
+```javascript
+class Graph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+  addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+  }
+}
+
+const graphList = new Graph();
+
+graphList.addVertex("Seoul");
+
+console.log(graphList.adjacencyList);
+```
+
