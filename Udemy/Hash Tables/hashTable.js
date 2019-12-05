@@ -10,7 +10,7 @@ function hash(key, arrayLen) {
 }
 
 class HashTable {
-  constructor(size = 4) {
+  constructor(size = 53) {
     this.keyMap = new Array(size);
   }
   _hash(key) {
@@ -30,16 +30,26 @@ class HashTable {
     }
     this.keyMap[index].push([key, value]);
   }
+  get(key) {
+    let index = this._hash(key);
+    if (this.keyMap[index]) {
+      this.keyMap[index].forEach(ele => {
+        if (ele[0] === key) return ele[1];
+      });
+    }
+    return undefined;
+  }
 }
 
-let ht = new HashTable();
-ht.set("hello world", "goodbye!!");
-ht.set("dogs", "are cool");
-ht.set("cats", "are adorable");
-ht.set("i love", "pizza");
+let ht = new HashTable(17);
+ht.set("maroon", "#800000");
+ht.set("yellow", "#FFFF00");
+ht.set("olive", "#808000");
+ht.set("salmon", "#FA8072");
+ht.set("lightcoral", "#F08080");
+ht.set("mediumvioletred", "#C71585");
+ht.set("plum", "#DDA0DD");
 
-console.log(ht.keyMap);
+ht.get("plum");
 
-ht.set("hi", "bye");
-
-console.log(ht.keyMap);
+// console.log(ht.keyMap);
