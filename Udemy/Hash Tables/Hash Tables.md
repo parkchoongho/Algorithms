@@ -264,3 +264,13 @@ ht.get("plum");
 // console.log(ht.keyMap);
 ```
 
+### Keys and Values
+
+#### Keys
+
+1. Loops through the hash table array and returns an array of keys in the table
+
+#### Values
+
+1. Loops through the hash table array and returns an array of values in the table
+

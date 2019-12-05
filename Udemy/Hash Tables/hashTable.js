@@ -39,6 +39,28 @@ class HashTable {
     }
     return undefined;
   }
+  values() {
+    let valuesArr = [];
+    this.keyMap.forEach(bigEle => {
+      if (bigEle) {
+        bigEle.forEach(ele => {
+          if (!valuesArr.includes(ele[1])) valuesArr.push(ele[1]);
+        });
+      }
+    });
+    return valuesArr;
+  }
+  keys() {
+    let keysArr = [];
+    this.keyMap.forEach(bigEle => {
+      if (bigEle) {
+        bigEle.forEach(ele => {
+          if (!keysArr.includes(ele[0])) keysArr.push(ele[0]);
+        });
+      }
+    });
+    return keysArr;
+  }
 }
 
 let ht = new HashTable(17);
@@ -49,7 +71,11 @@ ht.set("salmon", "#FA8072");
 ht.set("lightcoral", "#F08080");
 ht.set("mediumvioletred", "#C71585");
 ht.set("plum", "#DDA0DD");
+ht.set("keek", "#DDA0DD");
+ht.set("plum", "#DDA0DD");
 
 ht.get("plum");
 
+console.log(ht.values());
+console.log(ht.keys());
 // console.log(ht.keyMap);
