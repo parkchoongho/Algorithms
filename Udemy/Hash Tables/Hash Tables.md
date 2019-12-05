@@ -138,3 +138,19 @@ This allows us to store multiple key-value pairs at the same index.
 With *linear probing*, when we find a collision, we search through the array to find the next empty slot.
 
 Unlike with separate chaining, this allows us to store a single key-value at each index.
+
+### Hash Table Set and Get
+
+#### Set
+
+1. Accepts a key and a value
+2. Hashes the key
+3. Stores the key-value pair in the hash table array via separate chaining
+
+#### Get
+
+1. Accepts a key
+2. Hashes the key
+3. Retrieves the key-value pair in the hash table
+4. If the key isn't found, returns undefined
+
