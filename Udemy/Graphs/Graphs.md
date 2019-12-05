@@ -116,3 +116,33 @@ graphList.addVertex("Seoul");
 console.log(graphList.adjacencyList);
 ```
 
+### Add an Edge
+
+- This function should accept two vertices, we can call them vertex1 and vertex2
+- The function should find in the adjacency list the key of vertex1 and push vertex2 to the array
+- The function should find in the adjacency list the key of vertex2 and push vertex1 to the array
+- Don't worry about handling errors/invalid vertices
+
+```javascript
+class Graph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+  addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+  }
+  addEdge(vertex1, vertex2) {
+    this.adjacencyList[vertex1].push(vertex2);
+    this.adjacencyList[vertex2].push(vertex1);
+  }
+}
+
+const graphList = new Graph();
+
+graphList.addVertex("Seoul");
+graphList.addVertex("Tokyo");
+graphList.addEdge("Seoul", "Tokyo");
+
+console.log(graphList.adjacencyList);
+```
+
