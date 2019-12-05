@@ -17,6 +17,12 @@ class Graph {
       ele => ele !== vertex1
     );
   }
+  removeVertex(vertex) {
+    this.adjacencyList[vertex].forEach(ele => {
+      this.removeEdge(vertex, ele);
+    });
+    delete this.adjacencyList[vertex];
+  }
 }
 
 const graphList = new Graph();
@@ -27,9 +33,13 @@ graphList.addVertex("NewYork");
 graphList.addVertex("Beijing");
 
 graphList.addEdge("Seoul", "Tokyo");
-graphList.addEdge("NewYork", "Tokyo");
 graphList.addEdge("Seoul", "NewYork");
 graphList.addEdge("Seoul", "Beijing");
+graphList.addEdge("NewYork", "Tokyo");
+graphList.addEdge("NewYork", "Beijing");
+graphList.addEdge("Tokyo", "Beijing");
 
 graphList.removeEdge("Seoul", "Beijing");
+console.log(graphList.adjacencyList);
+graphList.removeVertex("Beijing");
 console.log(graphList.adjacencyList);
