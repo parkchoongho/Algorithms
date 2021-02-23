@@ -1,71 +1,68 @@
-class Node():
+class Node:
     def __init__(self, val):
         self.val = val
         self.next = None
 
-class LinkedList():
+
+class LinkedList:
     def __init__(self):
         self.head = None
 
-    def append(self, val):
-        new_node = Node(val)
-        if self.head == None:
-            self.head = new_node
-            return None
-        current_node = self.head
-        while current_node.next != None:
-            current_node = current_node.next
-        current_node.next = new_node
+    def append(self, node: Node):
+        if self.head is None:
+            self.head = node
+            return
+        cursor = self.head
+        while cursor.next is not None:
+            cursor = cursor.next
+        cursor.next = node
 
     def pop(self):
-        last_node = self.head
-        # 링크드리스트에 아무런 노드가 없는 경우
-        if last_node == None:
-            return None
+        if self.head is None:
+            raise NoSuchElementException()
         # 헤드에만 노드가 있는 경우
-        if last_node.next == None:
+        if self.head.next is None:
+            last_node = self.head
             self.head = None
-            return last_node.val
-        prev_node = self.head
-        while last_node.next !=None:
-            prev_node = last_node
-            last_node = last_node.next
-        prev_node.next = None
-        return last_node.val
+            return last_node
+        node = self.head
+        while node.next.next is not None:
+            node = node.next
+        last_node = node.next
+        node.next = None
+        return last_node
 
     def shift(self):
-        first_node = self.head
-        # 링크드리스트에 아무런 노드가 없는 경우
-        if first_node == None:
-            return None
-        self.head = first_node.next
-        return first_node.val
+        if self.head is None:
+            return NoSuchElementException()
+        node = self.head
+        self.head = self.head.next
+        return node
 
-    def unshift(self, val):
-        new_node = Node(val)
-        new_node.next = self.head
-        self.head = new_node
-
+    def unshift(self, node: Node):
+        node.next = self.head
+        self.head = node
 
     def __str__(self):
         current_node = self.head
-        if current_node == None:
+        if current_node is None:
             return "{}"
         output = "{"
         output += str(current_node.val)
-        while current_node.next != None:
+        while current_node.next is not None:
             current_node = current_node.next
             output += " -> "
             output += str(current_node.val)
         output += "}"
         return output
 
+
 linked_list = LinkedList()
 
-linked_list.append(2)
-linked_list.append(1)
-linked_list.append(27)
-linked_list.append(30)
+linked_list.append(Node(2))
+linked_list.append(Node(1))
+linked_list.append(Node(27))
+linked_list.append(Node(30))
 
 print(linked_list.shift())
 print(linked_list.shift())
@@ -73,11 +70,9 @@ print(linked_list.shift())
 print(linked_list.shift())
 print(linked_list.shift())
 
-linked_list.unshift(3)
-linked_list.unshift(2)
-linked_list.unshift(1)
-linked_list.unshift(56)
-
+linked_list.unshift(Node(3))
+linked_list.unshift(Node(2))
+linked_list.unshift(Node(1))
+linked_list.unshift(Node(56))
 
 print(linked_list)
-
