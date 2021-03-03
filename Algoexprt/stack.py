@@ -24,6 +24,14 @@ class StackInterface:
     def search(self, index) -> Node:
         pass
 
+    @abstractmethod
+    def peek(self) -> Node:
+        pass
+
+    @abstractmethod
+    def __str__(self):
+        pass
+
 
 class Stack(StackInterface):
     def __init__(self):
@@ -64,3 +72,30 @@ class Stack(StackInterface):
             start_index += 1
             node = node.prev
         return node
+
+    def peek(self) -> Node:
+        if self.last is None:
+            raise NoSuchElementException()
+        return self.last
+
+    def __str__(self):
+        current_node = self.last
+        foo = "last\n"
+        foo += " |\n v\n"
+        while current_node is not None:
+            foo += "["
+            foo += str(current_node.val)
+            foo += "]\n |\n v\n"
+            current_node = current_node.prev
+        foo += "None"
+        return foo
+
+
+stack = Stack()
+
+stack.push(Node(1))
+stack.push(Node(2))
+stack.push(Node(3))
+stack.push(Node(4))
+
+print(stack)
