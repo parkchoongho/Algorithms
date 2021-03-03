@@ -10,6 +10,12 @@ class Node:
         self.val = val
         self.prev = None
 
+    def __str__(self):
+        result = "{ "
+        result += str(self.val)
+        result += " }"
+        return result
+
 
 class StackInterface:
     @abstractmethod
@@ -77,15 +83,15 @@ class Stack(StackInterface):
 
     def __str__(self):
         current_node = self.last
-        foo = "last\n"
-        foo += " |\n v\n"
+        result = "last\n"
+        result += " |\n v\n"
         while current_node is not None:
-            foo += "["
-            foo += str(current_node.val)
-            foo += "]\n |\n v\n"
+            result += "["
+            result += str(current_node.val)
+            result += "]\n |\n v\n"
             current_node = current_node.prev
-        foo += "None"
-        return foo
+        result += "None"
+        return result
 
 
 stack = Stack()
@@ -95,7 +101,11 @@ stack.push(Node(2))
 stack.push(Node(3))
 stack.push(Node(4))
 
-stack.pop()
-stack.pop()
+print(stack.pop())
+print(stack.pop())
+
+print(stack.search(2))
+
+print(stack.peek())
 
 print(stack)
