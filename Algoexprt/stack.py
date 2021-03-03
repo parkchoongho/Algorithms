@@ -35,14 +35,12 @@ class StackInterface:
 
 class Stack(StackInterface):
     def __init__(self):
-        self.first = None
         self.last = None
         self.size = 0
 
     def push(self, node: Node) -> None:
         self.size += 1
-        if self.first is None:
-            self.first = node
+        if self.last is None:
             self.last = node
             return
         node.prev = self.last
@@ -53,9 +51,8 @@ class Stack(StackInterface):
         if self.last is None:
             raise NoSuchElementException()
         self.size -= 1
-        if self.first is self.last:
+        if self.last.prev is None:
             node = self.last
-            self.first = None
             self.last = None
             return node
         node = self.last
@@ -97,5 +94,8 @@ stack.push(Node(1))
 stack.push(Node(2))
 stack.push(Node(3))
 stack.push(Node(4))
+
+stack.pop()
+stack.pop()
 
 print(stack)
