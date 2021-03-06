@@ -1,6 +1,14 @@
 from abc import abstractmethod
 
 
+class NoSuchElementException(Exception):
+    pass
+
+
+class WrongIndex(Exception):
+    pass
+
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -38,10 +46,6 @@ class DoublyLinkedListInterface:
         pass
 
 
-class NoSuchElementException(Exception):
-    pass
-
-
 class DoublyLinkedList(DoublyLinkedListInterface):
     def __init__(self):
         self.head = None
@@ -49,94 +53,82 @@ class DoublyLinkedList(DoublyLinkedListInterface):
         self.size = 0
 
     def add_first(self, node: Node) -> None:
+        self.size += 1
         if self.head is None:
             self.head = node
             self.tail = node
             return
-        node.next = self.head
         self.head.prev = node
+        node.next = self.head
         self.head = node
-        self.size += 1
+        return
 
     def add_last(self, node: Node) -> None:
-        if self.tail is None:
+        self.size += 1
+        if self.head is None:
             self.head = node
             self.tail = node
             return
-        node.prev = self.tail
         self.tail.next = node
+        node.prev = self.tail
         self.tail = node
-        self.size += 1
+        return
 
     def remove_first(self) -> Node:
         if self.head is None:
             raise NoSuchElementException()
+        self.size -= 1
         if self.head.next is None:
             node = self.head
             self.head = None
             self.tail = None
-            self.size -= 1
             return node
         node = self.head
-        node.next.prev = None
         self.head = node.next
+        node.next.prev = None
         node.next = None
-        self.size -= 1
         return node
 
     def remove_last(self) -> Node:
-        if self.tail is None:
+        if self.head is None:
             raise NoSuchElementException()
-        if self.tail.prev is None:
+        self.size -= 1
+        if self.head.next is None:
             node = self.tail
             self.head = None
             self.tail = None
-            self.size -= 1
             return node
         node = self.tail
-        node.prev.next = None
         self.tail = node.prev
+        node.prev.next = None
         node.prev = None
-        self.size -= 1
         return node
 
     def search(self, index) -> Node:
-        if index > self.size:
-            raise NoSuchElementException()
-        if index < (self.size / 2):
-            node = self.head
+        if index <= 0 or index > self.size:
+            raise WrongIndex()
+        if index <= (self.size / 2):
             count = 1
+            node = self.head
             while count != index:
                 count += 1
                 node = node.next
             return node
         if index > (self.size / 2):
-            node = self.tail
             count = self.size
+            node = self.tail
             while count != index:
                 count -= 1
                 node = node.prev
             return node
 
     def insert(self, index, node) -> None:
-        if self.size == 0:
-            self.head = node
-            self.tail = node
-            self.size += 1
+        if index <= 0 or index > self.size:
+            raise WrongIndex()
+        if index == 1:
+            self.add_first(node)
             return
         found_node = self.search(index)
-        if found_node.prev is None:
-            found_node.prev = node
-            node.next = found_node
-            self.head = node
-            self.size += 1
-            return
-        if found_node.next is None:
-            found_node.next = node
-            node.prev = found_node
-            self.tail = node
-            self.size += 1
-            return
         prev_node = found_node.prev
         prev_node.next = node
         found_node.prev = node
@@ -146,21 +138,13 @@ class DoublyLinkedList(DoublyLinkedListInterface):
         return
 
     def remove(self, index) -> Node:
+        if index <= 0 or index > self.size:
+            raise WrongIndex()
         node = self.search(index)
         if node.prev is None:
-            next_node = node.next
-            node.next = None
-            next_node.prev = None
-            self.head = next_node
-            self.size -= 1
-            return node
+            return self.remove_first()
         if node.next is None:
-            prev_node = node.prev
-            node.prev = None
-            prev_node.next = None
-            self.tail = prev_node
-            self.size -= 1
-            return node
+            return self.remove_last()
         next_node = node.next
         prev_node = node.prev
         next_node.prev = prev_node
@@ -170,6 +154,17 @@ class DoublyLinkedList(DoublyLinkedListInterface):
         self.size -= 1
         return Node
 
+    def __str__(self):
+        node = self.head
+        result = "None "
+        while node is not None:
+            result += "<- "
+            result += str(node.value)
+            result += " -> "
+            node = node.next
+        result += "None"
+        return result
+
 
 node1 = Node(1)
 node2 = Node(2)
@@ -177,5 +172,7 @@ node3 = Node(3)
 
 linked_list = DoublyLinkedList()
 
-linked_list.insert(1, node1)
+linked_list.add_first(node1)
 linked_list.insert(1, node2)
+
+print(linked_list)
